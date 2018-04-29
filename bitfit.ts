@@ -27,3 +27,21 @@ export const currentDate = (): string => {
   let dd = date.getDate()
   return `${yyyy}-${mm}-${dd}`
 }
+
+/**
+ * Creates a receiver to handle updates from the peer socket, which will
+ * call back to a router function that accepts `(key, value)` parameters.
+ *
+ * @param router the router function to be called with the `(key, value)` pair
+ * @returns a function to be mounted to the `onmessage` handler
+ */
+export const receiver = (
+  router: (key: string, value: string) => void
+): ((event: Fitbit.MessageEvent) => void) => {
+  const handler = (event: Fitbit.MessageEvent) => {
+    let key = event.data.key
+    let value = stripQuotes(event.data.newValue)
+    router(key, value)
+  }
+  return handler
+}
