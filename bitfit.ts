@@ -18,6 +18,15 @@ export const stripQuotes = (str: string): string => {
 }
 
 /**
+ * Pads a number to two digits and converts to a string.
+ *
+ * @param i the number to be padded
+ */
+export const zeroPad = (i: number): string => {
+  return i < 10 ? "0" + i : String(i)
+}
+
+/**
  * currentDate returns the current date in YYYY-MM-DD format.
  */
 export const currentDate = (): string => {
