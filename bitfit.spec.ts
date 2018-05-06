@@ -1,4 +1,4 @@
-import { Fitbit, stripQuotes } from "./bitfit"
+import { Fitbit, receiver, stripQuotes } from "./bitfit"
 import { expect } from "chai"
 import "mocha"
 
@@ -7,6 +7,26 @@ describe("Helper", () => {
     it("removes quotes", () => {
       const s = '"a"'
       expect(stripQuotes(s)).to.equal("a")
+    })
+  })
+
+  describe("receiver", () => {
+    it("routes as key and value arguments", () => {
+      let key: string = ""
+      let value: string = ""
+      let msg: Fitbit.MessageEvent = {
+        data: { key: "key", newValue: "value" }
+      }
+      // a trivial router to store the data in scope.
+      let router = (k, v) => {
+        key = k
+        value = v
+      }
+      // mount like the real code, and test the values.
+      let onmessage = receiver(router)
+      onmessage(msg)
+      expect(key).to.equal("key")
+      expect(value).to.equal("value")
     })
   })
 })
