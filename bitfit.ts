@@ -30,10 +30,15 @@ export const zeroPad = (i: number): string => {
  * currentDate returns the current date in YYYY-MM-DD format.
  */
 export const currentDate = (): string => {
-  let date = new Date()
-  let yyyy = date.getFullYear()
-  let mm = date.getMonth() + 1
-  let dd = date.getDate()
+  return formatDate(new Date())
+}
+
+export const formatDate = (d: Date): string => {
+  let yyyy = d.getFullYear()
+  let month = d.getMonth() + 1
+  let date = d.getDate()
+  let mm: string = month < 10 ? zeroPad(month) : String(month)
+  let dd: string = date < 10 ? zeroPad(date) : String(date)
   return `${yyyy}-${mm}-${dd}`
 }
 
