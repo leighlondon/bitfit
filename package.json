@@ -1,6 +1,6 @@
 {
   "name": "bitfit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "bitfit.ts",
   "repository": "github.com/leighlondon/bitfit",
   "author": "Leigh London <leigh.00.london@gmail.com>",
