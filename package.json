@@ -18,8 +18,5 @@
     "build": "tsc",
     "lint": "prettier --write '*.ts' '*.js' '*.json'",
     "test": "mocha -r ts-node/register *.spec.ts"
-  },
-  "dependencies": {
-    "npm": "^6.0.0"
   }
 }
